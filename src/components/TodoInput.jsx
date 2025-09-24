@@ -8,8 +8,7 @@ export default function TodoInput({ addTodo }) {
   };
 
   const handleAddTodo = () => {
-    const newTodo = { id: Number(new Date()), content: inputValue, complete: false };
-    addTodo(newTodo);
+    addTodo(inputValue);
     setInputValue("");
   };
 

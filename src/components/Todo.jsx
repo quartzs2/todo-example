@@ -3,12 +3,9 @@ import { useState } from "react";
 export default function Todo({ todo, deleteTodo, updateTodo }) {
   const [inputValue, setInputValue] = useState(todo.content);
   const [isEditing, setIsEditing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(todo.complete);
 
   const handleCheckboxChange = () => {
-    const newCompletedState = !isCompleted;
-    setIsCompleted(newCompletedState);
-    updateTodo(todo.id, { ...todo, complete: newCompletedState });
+    updateTodo(todo.id, { ...todo, complete: !todo.complete });
   };
 
   const handleEditInputChange = (event) => {
@@ -16,7 +13,9 @@ export default function Todo({ todo, deleteTodo, updateTodo }) {
   };
 
   const handleEditToggle = () => {
-    updateTodo(todo.id, { ...todo, content: inputValue });
+    if (isEditing) {
+      updateTodo(todo.id, { ...todo, content: inputValue });
+    }
     setIsEditing((prev) => !prev);
   };
 
@@ -27,7 +26,7 @@ export default function Todo({ todo, deleteTodo, updateTodo }) {
   return (
     <li>
       <div className="todo-content">
-        <input type="checkbox" checked={isCompleted} onChange={handleCheckboxChange} />
+        <input type="checkbox" checked={todo.complete} onChange={handleCheckboxChange} />
         {!isEditing && <span>{todo.content}</span>}
         {isEditing && <input type="text" value={inputValue} onChange={handleEditInputChange} />}
       </div>

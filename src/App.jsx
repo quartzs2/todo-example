@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
+import Todo from "./components/Todo";
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -10,8 +11,15 @@ function App() {
     { id: 2, content: "잠 자기", complete: false },
   ]);
 
-  function addTodo(todo) {
-    setTodoList((prev) => [...prev, todo]);
+  const nextId = useRef(3);
+
+  function addTodo(content) {
+    const newTodo = {
+      id: nextId.current++,
+      content,
+      complete: false,
+    };
+    setTodoList((prev) => [...prev, newTodo]);
   }
 
   function deleteTodo(id) {
@@ -25,7 +33,11 @@ function App() {
   return (
     <>
       <h1>오늘의 할 일 ✏️</h1>
-      <TodoList todoList={todoList} deleteTodo={deleteTodo} updateTodo={updateTodo} />
+      <TodoList>
+        {todoList.map((todo) => (
+          <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
+        ))}
+      </TodoList>
       <hr />
       <TodoInput addTodo={addTodo} />
     </>
