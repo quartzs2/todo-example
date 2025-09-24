@@ -1,0 +1,75 @@
+#root {
+  max-width: 1280px;
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
+.todo-content {
+  display: flex;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.todo-btns {
+  display: flex;
+  gap: 0.2rem;
+}
+
+input[type="checkbox"] {
+  width: 1rem;
+  accent-color: #a8f2dd;
+}
+
+input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+input[type="text"] {
+  width: 80%;
+  font-size: 1.2rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #7db3a3;
+  border-radius: 6px;
+  outline: none;
+  overflow: hidden;
+}
+
+.todo-input {
+  height: 3rem;
+  display: flex;
+  margin-top: 1rem;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 0 1rem;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.todo-input button {
+  padding: 0 2rem;
+  border: 1px solid #7db3a3;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1.2rem;
+}
